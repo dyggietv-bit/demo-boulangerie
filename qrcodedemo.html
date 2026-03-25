@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Au Pain Doré — Assistant</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #7a3b1e;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .emoji { font-size: 3em; margin-bottom: 16px; }
+
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 0.95em;
+      opacity: 0.75;
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+
+    .bubble {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 16px;
+      padding: 16px 24px;
+      font-size: 0.9em;
+      opacity: 0.9;
+      max-width: 280px;
+      line-height: 1.6;
+    }
+
+    .bubble strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1em;
+    }
+
+    .powered {
+      position: fixed;
+      bottom: 16px;
+      font-size: 0.7em;
+      opacity: 0.4;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="emoji">🥖</div>
+  <h1>Au Pain Doré</h1>
+  <p>Boulangerie Artisanale — Chartres</p>
+
+  <div class="bubble">
+    <strong>👋 Bonjour !</strong>
+    Notre assistant répond à toutes vos questions instantanément.
+  </div>
+
+  <div class="powered">Powered by LocalBot</div>
+
+  <!-- WIDGET FLOWISE — remplace les valeurs ci-dessous -->
+  <script type="module">
+    import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+    Chatbot.init({
+      chatflowid: "9c80879b-64aa-4a4a-98c7-5e001db43425",
+      apiHost: "https://flowise-production-9a037.up.railway.app",
+      theme: {
+        button: {
+          backgroundColor: "#f5deb3",
+          iconColor: "#7a3b1e",
+          size: 56
+        },
+        chatWindow: {
+          welcomeMessage: "Bonjour ! 👋 Bienvenue à la boulangerie Au Pain Doré. Comment puis-je vous aider ?",
+          backgroundColor: "#fdf6ec",
+          title: "Au Pain Doré",
+          titleAvatarSrc: "https://cdn-icons-png.flaticon.com/512/992/992752.png",
+          botMessage: {
+            backgroundColor: "#f5deb3",
+            textColor: "#3a2a1a"
+          },
+          userMessage: {
+            backgroundColor: "#7a3b1e",
+            textColor: "#ffffff"
+          }
+        }
+      }
+    })
+
+    // Ouvre le chatbot automatiquement après 1 seconde
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelector('flowise-chatbot')?.shadowRoot
+          ?.querySelector('button')?.click()
+      }, 1000)
+    })
+  </script>
+
+</body>
+</html>
